@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vendas.Domain.Common.Base;
-using Vendas.Domain.Common.Enums;
 using Vendas.Domain.Common.Exceptions;
 using Vendas.Domain.Common.Validations;
+using Vendas.Domain.Pedidos.Enums;
 using Vendas.Domain.Pedidos.Events;
 
 namespace Vendas.Domain.Pedidos.Entities;

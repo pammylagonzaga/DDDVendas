@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using Vendas.Domain.Common.Base;
 
-namespace Vendas.Domain.Pedidos.Events;
+namespace Vendas.Domain.Clientes.Events;
 
-public sealed record class PedidoEntregueEvent (
-    Guid PedidoId,
-    Guid ClientId) : DomainEventBase;
+public sealed record class ClienteBloqueadoEvent(
+    Guid ClienteId,
+    string Cpf) : DomainEventBase;

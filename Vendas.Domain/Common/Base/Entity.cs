@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vendas.Domain.Pedidos.Events;
+using Vendas.Domain.Common.Interfaces;
 
 namespace Vendas.Domain.Common.Base;
 
