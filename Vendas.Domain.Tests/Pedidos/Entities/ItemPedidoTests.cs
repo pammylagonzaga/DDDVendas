@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Vendas.Domain.Common.Base;
 using Vendas.Domain.Common.Exceptions;
-using Vendas.Domain.Pedidos.Entities;
+using Vendas.Domain.Pedidos;
 
-namespace Vendas.Domain.Tests.Pedidos.Entities;
+namespace Vendas.Domain.Tests.Pedidos;
 
 public class ItemPedidoTests
 {

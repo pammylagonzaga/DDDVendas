@@ -8,7 +8,7 @@ using Vendas.Domain.Common.Base;
 using Vendas.Domain.Common.Exceptions;
 using Vendas.Domain.Common.Validations;
 
-namespace Vendas.Domain.Catalogo.Entities;
+namespace Vendas.Domain.Catalogo;
 
 public sealed class Categoria : AggregatRoot
 {

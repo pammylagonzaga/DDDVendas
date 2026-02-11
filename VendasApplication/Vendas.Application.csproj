@@ -11,9 +11,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\Catalogo\Categoria\" />
-    <Folder Include="Commands\Catalogo\Produto\" />
-    <Folder Include="Commands\Clientes\" />
+    <Folder Include="Commands\CatalogoCommands\CategoriaCommands\" />
+    <Folder Include="Commands\ClientesCommands\" />
   </ItemGroup>
 
 </Project>

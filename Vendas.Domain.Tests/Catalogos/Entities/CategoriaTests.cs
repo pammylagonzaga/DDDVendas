@@ -4,11 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vendas.Domain.Catalogo.Entities;
+using Vendas.Domain.Catalogo;
 using Vendas.Domain.Catalogo.Events;
 using Vendas.Domain.Common.Exceptions;
 
-namespace Vendas.Domain.Tests.Catalogos.Entities;
+namespace Vendas.Domain.Tests.Catalogos;
 
 public class CategoriaTests
 {

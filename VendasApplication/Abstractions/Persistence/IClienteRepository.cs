@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Vendas.Domain.Catalogo.Entities;
-using Vendas.Domain.Clientes.Entities;
+using Vendas.Domain.Clientes;
 
 namespace Vendas.Application.Abstractions.Persistence;
 

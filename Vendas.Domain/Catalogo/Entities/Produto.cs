@@ -11,7 +11,7 @@ using Vendas.Domain.Common.Exceptions;
 using Vendas.Domain.Common.Validations;
 using Vendas.Domain.Pedidos.Enums;
 
-namespace Vendas.Domain.Catalogo.Entities;
+namespace Vendas.Domain.Catalogo;
 
 public sealed class Produto : AggregatRoot
 {

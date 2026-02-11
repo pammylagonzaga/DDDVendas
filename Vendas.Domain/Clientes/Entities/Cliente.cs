@@ -10,7 +10,7 @@ using Vendas.Domain.Common.Base;
 using Vendas.Domain.Common.Exceptions;
 using Vendas.Domain.Common.Validations;
 
-namespace Vendas.Domain.Clientes.Entities;
+namespace Vendas.Domain.Clientes;
 
 public sealed class Cliente : AggregatRoot
 {
