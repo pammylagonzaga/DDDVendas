@@ -10,13 +10,11 @@ namespace Vendas.Application.Commands.CatalogoCommands.ProdutoCommands.AtualizaP
 public sealed class AtualizaPrecoProdutoCommand
 {
     public Guid ProdutoId { get; }
-    public PrecoProduto NovoPreco { get; }
-    public decimal PrecoAntigo { get; }
+    public decimal NovoPreco { get; }
 
-    public AtualizaPrecoProdutoCommand(Guid produtoId, PrecoProduto novoPreco, decimal precoAntigo)
+    public AtualizaPrecoProdutoCommand(Guid produtoId, decimal novoPreco)
     {
         ProdutoId = produtoId;
         NovoPreco = novoPreco;
-        PrecoAntigo = precoAntigo;
     }
 }

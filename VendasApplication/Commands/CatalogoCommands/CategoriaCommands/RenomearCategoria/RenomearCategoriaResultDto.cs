@@ -9,5 +9,5 @@ namespace Vendas.Application.Commands.CatalogoCommands.CategoriaCommands.Renomea
 public sealed class RenomearCategoriaResultDto
 {
     public Guid CategoriaId { get; init; }
-    public string NovoNome { get; init; } = null!;
+    public string NovoNome { get; init; } = string.Empty;
 }

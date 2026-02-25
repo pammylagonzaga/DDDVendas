@@ -30,7 +30,7 @@ public sealed class AtivarProdutoCommandHandler
             return new AtivarProdutoResultDto
             {
                 ProdutoId = produto.Id,
-                Ativa = produto.Status == Domain.Catalogo.Enums.StatusProduto.Ativo
+                Status = produto.Status.ToString()
             };
     }
 }

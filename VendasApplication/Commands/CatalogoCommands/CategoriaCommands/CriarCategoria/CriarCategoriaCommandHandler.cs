@@ -24,8 +24,8 @@ public sealed class CriarCategoriaCommandHandler
 
         return new CriarCategoriaResultDto
         {
+            CategoriaId = categoria.Id,
             Nome = categoria.Nome,
-            Descricao = categoria.Descricao,
             Ativa = categoria.Ativa
         };
     }

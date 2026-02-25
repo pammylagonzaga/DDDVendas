@@ -31,7 +31,7 @@ public sealed class InativarCategoriaCommandHandler
             return new InativarCategoriaResultDto
             {
                 CategoriaId = categoria.Id,
-                Inativa = categoria.Ativa.Equals(false)
+                Inativa = categoria.Ativa
             };
     }
 }

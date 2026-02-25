@@ -9,8 +9,8 @@ namespace Vendas.Application.Commands.CatalogoCommands.CategoriaCommands.CriarCa
 public class CriarCategoriaCommand
 {
     public string Nome { get; }
-    public string? Descricao { get; }
-    public CriarCategoriaCommand(string nome, string? descricao = null)
+    public string Descricao { get; }
+    public CriarCategoriaCommand(string nome, string descricao)
     {
         Nome = nome;
         Descricao = descricao;

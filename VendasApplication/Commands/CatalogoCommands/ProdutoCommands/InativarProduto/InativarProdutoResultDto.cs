@@ -9,5 +9,5 @@ namespace Vendas.Application.Commands.CatalogoCommands.ProdutoCommands.InativarP
 public sealed class InativarProdutoResultDto
 {
     public Guid ProdutoId { get; init; }
-    public bool Inativar { get; init; }
+    public string Status { get; init; } = string.Empty;
 }

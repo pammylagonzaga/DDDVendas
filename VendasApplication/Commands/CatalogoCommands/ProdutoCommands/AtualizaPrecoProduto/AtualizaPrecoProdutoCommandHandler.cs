@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Vendas.Application.Abstractions.Persistence;
+using Vendas.Domain.Catalogo.ValueObjects;
 
 namespace Vendas.Application.Commands.CatalogoCommands.ProdutoCommands.AtualizaPrecoProduto;
 
@@ -23,15 +24,14 @@ public sealed class AtualizaPrecoProdutoCommandHandler
             command.ProdutoId, cancellationToken)
             ?? throw new Exception("Produto não encontrado.");
 
-        produto.AlterarPreco(command.NovoPreco);
+        produto.AlterarPreco(new PrecoProduto(command.NovoPreco));
 
         await _produtoRepository.AtualizarAsync(produto, cancellationToken);
 
         return new AtualizaPrecoProdutoResultDto
         {
             ProdutoId = produto.Id,
-            NovoPreco = produto.Preco.Valor,
-            PrecoAntigo = command.PrecoAntigo
+            NovoPreco = produto.Preco.Valor
         };
     }
 }

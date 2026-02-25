@@ -34,7 +34,6 @@ public sealed class AjustarEstoqueCommandHandler
         {
             ProdutoId = produto.Id,
             EstoqueAtualizado = produto.Estoque,
-            MotivoAjuste = command.Motivo
         };
 
     }

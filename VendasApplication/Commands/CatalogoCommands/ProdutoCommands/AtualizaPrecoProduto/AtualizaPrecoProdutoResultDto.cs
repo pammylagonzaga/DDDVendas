@@ -11,5 +11,4 @@ public sealed class AtualizaPrecoProdutoResultDto
 {
     public Guid ProdutoId { get; init; }
     public decimal NovoPreco { get; init; }
-    public decimal PrecoAntigo { get; init; }
 }

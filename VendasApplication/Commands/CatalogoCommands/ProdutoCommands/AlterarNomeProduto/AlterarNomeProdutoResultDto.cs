@@ -10,5 +10,5 @@ namespace Vendas.Application.Commands.CatalogoCommands.ProdutoCommands.AlterarNo
 public sealed class AlterarNomeProdutoResultDto
 {
     public Guid ProdutoId { get; init; }
-    public string NovoNome { get; init; } = null!;
+    public string Nome { get; init; } = default!;
 }

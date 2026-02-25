@@ -10,5 +10,4 @@ public sealed class AjustarEstoqueResultDto
 {
     public Guid ProdutoId { get; init; }
     public int EstoqueAtualizado { get; init; }
-    public string MotivoAjuste { get; init; } = string.Empty;
 }

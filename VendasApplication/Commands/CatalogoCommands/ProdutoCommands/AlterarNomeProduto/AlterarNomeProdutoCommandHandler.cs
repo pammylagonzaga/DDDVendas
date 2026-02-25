@@ -31,7 +31,7 @@ public sealed class AlterarNomeProdutoCommandHandler
         return new AlterarNomeProdutoResultDto
         {
             ProdutoId = produto.Id,
-            NovoNome = produto.Nome.Valor
+            Nome = produto.Nome.Valor
         };
     }
 

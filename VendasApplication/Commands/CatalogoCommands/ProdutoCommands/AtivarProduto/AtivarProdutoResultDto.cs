@@ -10,5 +10,5 @@ namespace Vendas.Application.Commands.CatalogoCommands.ProdutoCommands.AtivarPro
 public sealed class AtivarProdutoResultDto
 {
     public Guid ProdutoId { get; init; }
-    public bool Ativa { get; init; }
+    public string Status { get; init; } = string.Empty;
 }
