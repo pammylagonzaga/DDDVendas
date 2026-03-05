@@ -10,13 +10,13 @@ namespace Vendas.Application.Commands.PedidosCommands.CriarPedidos;
 public sealed class CriarPedidoCommand
 {
     public Guid ClienteId { get; }
-    public EnderecoEntrega EnderecoEntrega { get; }
+    public Guid EnderecoId { get; }
 
     public CriarPedidoCommand(
         Guid clienteId,
-        EnderecoEntrega enderecoEntrega)
+        Guid enderecoId)
     {
         ClienteId = clienteId;
-        EnderecoEntrega = enderecoEntrega;
+        EnderecoId = enderecoId;
     }
 }

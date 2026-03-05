@@ -14,15 +14,17 @@ public class EnderecoEntrega : ValueObject
 {
     public string Cep { get; private set; }
     public string Logradouro { get; private set; }
+    public string Numero { get; private set; }
     public string Complemento { get; private set; }
     public string Bairro { get; private set; }
     public string Estado { get; private set; }
     public string Cidade { get; private set; }
     public string Pais { get; private set; }
-    private EnderecoEntrega(string cep, string logradouro, string complemento, string bairro, string estado, string cidade, string pais)
+    private EnderecoEntrega(string cep, string logradouro, string numero, string complemento, string bairro, string estado, string cidade, string pais)
     {
         Guard.AgainstNullorWhiteSpace(cep, nameof(Cep));
         Guard.AgainstNullorWhiteSpace(logradouro, nameof(Logradouro));
+        Guard.AgainstNullorWhiteSpace(numero, nameof(Numero));
         Guard.AgainstNullorWhiteSpace(bairro, nameof(Bairro));
         Guard.AgainstNullorWhiteSpace(estado, nameof(Estado));
         Guard.AgainstNullorWhiteSpace(cidade, nameof(Cidade));
@@ -33,6 +35,7 @@ public class EnderecoEntrega : ValueObject
 
         Cep = cep!;
         Logradouro = logradouro;
+        Numero = numero;
         Complemento = complemento ?? string.Empty;
         Bairro = bairro;
         Estado = estado;
@@ -40,15 +43,16 @@ public class EnderecoEntrega : ValueObject
         Pais = pais;
     }
 
-    public static EnderecoEntrega Criar (string cep, string logradouro, string complemento, string bairro, string estado, string cidade, string pais)
+    public static EnderecoEntrega Criar (string cep, string logradouro,string numero, string complemento, string bairro, string estado, string cidade, string pais)
     {
-        return new EnderecoEntrega(cep, logradouro, complemento, bairro, estado, cidade, pais);
+        return new EnderecoEntrega(cep, logradouro, numero, complemento, bairro, estado, cidade, pais);
     }
 
     protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return Cep;
         yield return Logradouro;
+        yield return Numero;
         yield return Complemento ?? string.Empty;
         yield return Bairro;
         yield return Estado;
@@ -58,6 +62,6 @@ public class EnderecoEntrega : ValueObject
 
     public string FormatarEndereco()
     {
-               return $"{Logradouro}, {Complemento} - {Bairro}, {Cidade} - {Estado}, {Pais} - CEP: {Cep}";
+               return $"{Logradouro},{Numero}, {Complemento} - {Bairro}, {Cidade} - {Estado}, {Pais} - CEP: {Cep}";
     }
 }

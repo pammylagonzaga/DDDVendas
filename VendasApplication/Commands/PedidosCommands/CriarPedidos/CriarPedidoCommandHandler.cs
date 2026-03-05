@@ -5,31 +5,46 @@ using System.Text;
 using System.Threading.Tasks;
 using Vendas.Application.Abstractions.Persistence;
 using Vendas.Domain.Pedidos;
+using Vendas.Domain.Pedidos.Integration.Cliente;
 
 
 namespace Vendas.Application.Commands.PedidosCommands.CriarPedidos;
 
 public sealed class CriarPedidoCommandHandler
 {
-    private readonly IPedidoRepository _pedidoRepository;
-    public CriarPedidoCommandHandler(IPedidoRepository pedidoRepository)
+        private readonly IPedidoRepository _pedidoRepository;
+        private readonly IClientesGateway _clientesGateway;
+        private readonly ClientesAcl _clientesAcl;
+
+    public CriarPedidoCommandHandler(
+        IPedidoRepository pedidoRepository,
+        IClientesGateway clientesGateway,
+        ClientesAcl clientesAcl)
     {
         _pedidoRepository = pedidoRepository;
+        _clientesGateway = clientesGateway;
+        _clientesAcl = clientesAcl;
     }
 
-    public async Task<CriarPedidoResultDto> HandleAsync(
-        CriarPedidoCommand command,
-        CancellationToken cancellationToken = default)
+    public async Task<CriarPedidoResultDto> HandleAsync(CriarPedidoCommand command,
+        CancellationToken cancellationToken= default)
     {
-        // 1 . Criar o agregado Pedido atraves do dominio
-        var pedido = Pedido.Criar(
-            command.ClienteId,
-            command.EnderecoEntrega);
+        //Buscar Endereço diretamente no BC Cliente (Upstreanm)
+        var enderecoDto = await _clientesGateway.ObterEnderecoAsync(command.ClienteId, command.EnderecoId, cancellationToken);
+    
+        if (enderecoDto is null)
+            throw new InvalidOperationException("Endereço não encontrado.");
 
-        //2. Persistir o pedido
+        //ACL traduz para modelo interno Snapshot do cliente
+        var enderecoEntrega = _clientesAcl.TraduzirEndereco(enderecoDto);
+
+        //Criar Aggragate
+        var pedido = Pedido.Criar(command.ClienteId,enderecoEntrega);
+
+        //Persistir o Pedido
         await _pedidoRepository.AdicionarAsync(pedido, cancellationToken);
 
-        //3. Retornar o resultado do caso de uso
+        //Retornar resultado (Id do Pedido criado)
         return new CriarPedidoResultDto(
             pedido.Id,
             pedido.NumeroPedido,
@@ -37,5 +52,6 @@ public sealed class CriarPedidoCommandHandler
             pedido.ValorTotal,
             pedido.StatusPedido.ToString()
             );
+
     }
 }

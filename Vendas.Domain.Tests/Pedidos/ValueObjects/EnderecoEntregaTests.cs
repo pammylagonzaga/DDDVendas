@@ -19,6 +19,7 @@ public class EnderecoEntregaTests
         //Arrange
         var cep = "01234-567";
         var logradouro = "Rua das Flores";
+        var numero = "123";
         var complemento = "Apto 101";
         var bairro = "Jardim Primavera";
         var estado = "SP";
@@ -26,7 +27,7 @@ public class EnderecoEntregaTests
         var pais = "Brasil";
 
         //Act
-        var endereco = EnderecoEntrega.Criar(cep, logradouro, complemento, bairro, estado, cidade, pais);
+        var endereco = EnderecoEntrega.Criar(cep, logradouro,numero, complemento, bairro, estado, cidade, pais);
 
         //Assert
         endereco.Should().NotBeNull();
@@ -53,6 +54,7 @@ public class EnderecoEntregaTests
     {
         //Arrange
         var logradouro = "Rua das Flores";
+        var numero = "123";
         var complemento = "Apto 101";
         var bairro = "Jardim Primavera";
         var estado = "SP";
@@ -60,7 +62,7 @@ public class EnderecoEntregaTests
         var pais = "Brasil";
 
         //Act
-        Action act = () => EnderecoEntrega.Criar(cepInvalido, logradouro, complemento, bairro, estado, cidade, pais);
+        Action act = () => EnderecoEntrega.Criar(cepInvalido, logradouro,numero, complemento, bairro, estado, cidade, pais);
 
         //Assert
         act.Should().Throw<DomainException>()
@@ -73,8 +75,8 @@ public class EnderecoEntregaTests
     {
 
         //Arrange
-        var endereco1 = EnderecoEntrega.Criar("12345-678", "Rua X", "Casa", "Centro", "SP", "São Paulo", "Brasil");
-        var endereco2 = EnderecoEntrega.Criar("12345-678", "Rua X", "Casa", "Centro", "SP", "São Paulo", "Brasil");
+        var endereco1 = EnderecoEntrega.Criar("12345-678", "Rua X","100", "Casa", "Centro", "SP", "São Paulo", "Brasil");
+        var endereco2 = EnderecoEntrega.Criar("12345-678", "Rua X", "100", "Casa", "Centro", "SP", "São Paulo", "Brasil");
 
         //Assert
         endereco1.Should().Be(endereco2);
@@ -86,8 +88,8 @@ public class EnderecoEntregaTests
     public void EnderecosDevemSerDiferentes_QuandoAlgumCampoForDiferente()
     {
         //Arrange
-        var endereco1 = EnderecoEntrega.Criar("12345-678", "Rua X", "Casa", "Centro", "SP", "São Paulo", "Brasil");
-        var endereco2 = EnderecoEntrega.Criar("12345-678", "Rua Y", "Casa", "Centro", "SP", "São Paulo", "Brasil");
+        var endereco1 = EnderecoEntrega.Criar("12345-678", "Rua X", "100", "Casa", "Centro", "SP", "São Paulo", "Brasil");
+        var endereco2 = EnderecoEntrega.Criar("12345-678", "Rua Y", "100", "Casa", "Centro", "SP", "São Paulo", "Brasil");
         //Assert
         endereco1.Should().NotBe(endereco2);
     }
@@ -97,7 +99,7 @@ public class EnderecoEntregaTests
     public void EnderecoEntregaDeveSerImutavel_AposCriacao()
     {
         //Arrange
-        var endereco = EnderecoEntrega.Criar("12345-678", "Rua X", "Casa", "Centro", "SP", "São Paulo", "Brasil");
+        var endereco = EnderecoEntrega.Criar("12345-678", "Rua X", "100", "Casa", "Centro", "SP", "São Paulo", "Brasil");
         //Act 
         Action act = () =>
         {
@@ -112,14 +114,14 @@ public class EnderecoEntregaTests
     }
 
     [Theory(DisplayName = "Deve lançar DomainException quando campos obrigatórios forem nulos ou vazios")]
-    [InlineData(null, "Logadouro", "Bairro", "Estado", "Cidade", "Pais")]
-    [InlineData("12345-678", null, "Bairro", "Estado", "Cidade", "Pais")]
-    [InlineData("12345-678", "Logadouro", "Bairro", "Estado", "Cidade", null)]
+    [InlineData(null, "Logadouro", "100", "Bairro", "Estado", "Cidade", "Pais")]
+    [InlineData("12345-678", null, "100", "Bairro", "Estado", "Cidade", "Pais")]
+    [InlineData("12345-678", "Logadouro", "100", "Bairro", "Estado", "Cidade", null)]
     public void Criar_DeveLancarDomainException_QuandoCamposObrigatoriosForemNulosOuVazios(
-        string cep, string logradouro, string bairro, string estado, string cidade, string pais)
+        string cep, string logradouro, string numero, string bairro, string estado, string cidade, string pais)
     {
         //Act
-        Action act = () => EnderecoEntrega.Criar(cep, logradouro, "Complemento", bairro, estado, cidade, pais);
+        Action act = () => EnderecoEntrega.Criar(cep, logradouro, numero, "Complemento", bairro, estado, cidade, pais);
 
         //Assert
         act.Should().Throw<DomainException>()
